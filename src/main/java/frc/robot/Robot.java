@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.autopaths.*;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 public class Robot extends TimedRobot {
 
@@ -19,6 +20,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
   public static Cameras cameras = new Cameras();
 
+  public static Ultrasonic ultra = new Ultrasonic(0, 0);
   //public static Drivetrain drive;
 
   @Override
@@ -31,7 +33,8 @@ public class Robot extends TimedRobot {
     autochooser.addOption("Turn", new Turn());
     autochooser.addOption("Straight Turn", new StraightTurn());
     SmartDashboard.putData("Auto mode", autochooser);
-
+    SmartDashboard.putNumber("Ultrasonic Range", ultra.getRangeInches());
+    ultra.setAutomaticMode(true);
     //controls = new Controls();
     ///drivetrain = new Drivetrain();
   }
@@ -39,6 +42,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    
   }
 
   @Override
